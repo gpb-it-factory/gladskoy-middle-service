@@ -31,7 +31,7 @@ public class ClientsController {
     public ClientResponse createNewClient(@RequestBody @Valid ClientRequest clientRequest, BindingResult bindingResult) {
         log.debug("Поступил запрос на создание клиента c username: {}", clientRequest.getUsername());
         if (bindingResult.hasErrors()) {
-            var errorMessage = new StringBuilder();
+            final var errorMessage = new StringBuilder();
             bindingResult.getFieldErrors().forEach(error -> {
                 log.warn("Запрос не валиден: {}", error.getDefaultMessage());
                 errorMessage.append(error.getField()).append(" - ").append(error.getDefaultMessage());
@@ -49,7 +49,7 @@ public class ClientsController {
     @GetMapping("/{id}/balance")
     public ClientBalanceResponse getCurrentBalance(@PathVariable("id") long id) {
         log.debug("Поступил запрос на получение текущего баланса клиента c id {}", id);
-        var balance = clientsService.getById(id);
+        final var balance = clientsService.getById(id);
         log.debug("Запрос на получение текущего баланса клиента {} выполнен успешно", id);
 
         return mapper.toClientBalanceResponse(balance);
