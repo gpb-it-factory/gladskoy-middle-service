@@ -18,7 +18,7 @@ class ClientsControllerCreateNewClientTest extends AbstractControllerTest {
     private ClientsService clientsService;
 
     @Test
-    void whenPassToRequestBodyValidParam_thenShouldReturnStatus200() throws Exception {
+    void whenPassToRequestBodyValidTelegramUserId_thenShouldReturnStatus200() throws Exception {
         var createClientRequest = post("/api/v1/clients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -31,7 +31,7 @@ class ClientsControllerCreateNewClientTest extends AbstractControllerTest {
     }
 
     @Test
-    void whenPassToRequestBodyInvalidParamTelegramUserId_thenShouldReturn422() throws Exception {
+    void whenPassToRequestBodyInvalidTelegramUserId_thenShouldReturn400() throws Exception {
         var createClientRequest = post("/api/v1/clients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -84,7 +84,7 @@ class ClientsControllerCreateNewClientTest extends AbstractControllerTest {
     }
 
     @Test
-    void whenTelegramUserIdParamLengthIsGreaterThan16_thenShouldReturn422() throws Exception {
+    void whenTelegramUserIdLengthIsGreaterThan16_thenShouldReturn422() throws Exception {
         var createClientRequest = post("/api/v1/clients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
