@@ -36,7 +36,9 @@ public class ClientsController {
         final var createUserRequest = clientMapper.map(createClientRequest);
         clientsService.createClient(createUserRequest);
 
-        final var createClientResponse = new CreateClientResponse("Клиент успешно зарегистрирован!");
+        final var createClientResponse = CreateClientResponse.builder()
+                .message("Клиент успешно зарегистрирован!")
+                .build();
         return new ResponseEntity<>(createClientResponse, HttpStatus.OK);
     }
 }
