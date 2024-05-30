@@ -1,11 +1,28 @@
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
 plugins {
 	id 'java'
+	id 'idea'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "org.openapi.generator" version "7.6.0"
 }
 
-ext {
-	springCloudVersion = "2023.0.1"
+sourceSets {
+	main {
+		java {
+			srcDirs(
+					"$rootDir/src/main/java",
+					"$rootDir/build/generated/backend-service/src/main/java"
+			)
+		}
+	}
+}
+
+idea {
+	module {
+		generatedSourceDirs.add(file("$rootDir/build/generated/backend-service/src/main/java"))
+	}
 }
 
 group = 'ru.gpbitfactory.minibank'
@@ -32,11 +49,49 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.modelmapper:modelmapper:3.2.0'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.1"
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.register("backendServiceOpenApi", GenerateTask) {
+	generatorName.set("spring")
+	inputSpec.set("$rootDir/src/main/resources/openapi/backend-service-v0.0.1.yaml")
+	outputDir.set("$rootDir/build/generated")
+	skipOverwrite = true
+	globalProperties.set([
+			apis           : "",
+			models         : "",
+			supportingFiles: 'ClientConfiguration.java'
+	])
+	configOptions.set([
+			configPackage   : "ru.gpbitfactory.minibank.backend.config",
+			apiPackage      : "ru.gpbitfactory.minibank.backend.api",
+			modelPackage    : "ru.gpbitfactory.minibank.backend.dto",
+			sourceFolder    : "backend-service/src/main/java",
+			library         : "spring-cloud",
+			dateLibrary     : "java8",
+			openApiNullable : "false",
+			generateBuilders: "true",
+			useOptional     : "true",
+			useSpringBoot3  : "true"
+	])
+}
+
+project.tasks {
+	compileJava {
+		dependsOn('backendServiceOpenApi')
+	}
 }
