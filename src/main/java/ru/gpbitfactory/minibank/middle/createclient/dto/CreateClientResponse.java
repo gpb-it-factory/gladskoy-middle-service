@@ -1,4 +1,4 @@
-package ru.gpbitfactory.minibank.middle.dto.response;
+package ru.gpbitfactory.minibank.middle.createclient.dto;
 
 import lombok.Builder;
 import lombok.Getter;

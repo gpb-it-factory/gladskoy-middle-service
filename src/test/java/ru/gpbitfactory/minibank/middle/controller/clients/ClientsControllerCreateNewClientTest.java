@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import ru.gpbitfactory.minibank.middle.controller.AbstractControllerTest;
-import ru.gpbitfactory.minibank.middle.service.ClientsService;
+import ru.gpbitfactory.minibank.middle.createclient.service.ClientsService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

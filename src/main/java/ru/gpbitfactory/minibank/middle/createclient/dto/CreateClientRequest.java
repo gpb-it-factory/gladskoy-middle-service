@@ -1,4 +1,4 @@
-package ru.gpbitfactory.minibank.middle.dto.request;
+package ru.gpbitfactory.minibank.middle.createclient.dto;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;

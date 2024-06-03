@@ -1,10 +1,9 @@
-package ru.gpbitfactory.minibank.middle.dto.mapper;
+package ru.gpbitfactory.minibank.middle.createclient.dto;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import ru.gpbitfactory.minibank.backend.dto.CreateUserRequest;
-import ru.gpbitfactory.minibank.middle.dto.request.CreateClientRequest;
 
 @Component
 @RequiredArgsConstructor
