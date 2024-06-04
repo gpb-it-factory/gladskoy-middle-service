@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Формат непредвиденной ошибки
+ */
 @Setter
 @Getter
 @Builder

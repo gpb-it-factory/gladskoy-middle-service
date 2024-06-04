@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Запрос на создание нового клиента
+ */
 @Setter
 @Getter
 public class CreateClientRequest {
