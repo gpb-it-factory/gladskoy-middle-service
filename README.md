@@ -1,6 +1,8 @@
 # Middle Service приложения Мини-банк
 
 [![Java Gradle Build & Test](https://github.com/gpb-it-factory/gladskoy-middle-service/actions/workflows/gradle-ci.yml/badge.svg)](https://github.com/gpb-it-factory/gladskoy-middle-service/actions/workflows/gradle-ci.yml)
+[![Instructions coverage](.github/badges/instructions.svg)](https://github.com/gpb-it-factory/gladskoy-middle-service/actions/workflows/gradle-ci.yml)
+[![Branches coverage](.github/badges/branches.svg)](https://github.com/gpb-it-factory/gladskoy-middle-service/actions/workflows/gradle-ci.yml)
 
 Middle Service - это один из компонентов "Мини-банка", приложения разрабатываемого в рамках программы [GPB IT Factory Backend 2024](https://gpb.fut.ru/itfactory/backend).
 Сервис принимает запросы от Telegram-бота, выполняет валидацию и бизнес-логику, а так же маршрутизирует запросы в Backend Service.

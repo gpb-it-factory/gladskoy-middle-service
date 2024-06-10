@@ -3,6 +3,7 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 plugins {
 	id 'java'
 	id 'idea'
+	id 'jacoco'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id "org.openapi.generator" version "7.6.0"
@@ -23,6 +24,10 @@ idea {
 	module {
 		generatedSourceDirs.add(file("$rootDir/build/generated/backend-service/src/main/java"))
 	}
+}
+
+jacoco {
+	toolVersion = "0.8.12"
 }
 
 group = 'ru.gpbitfactory.minibank'
@@ -62,8 +67,15 @@ dependencyManagement {
 	}
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
+}
+
+jacocoTestReport {
+	classDirectories.from("$rootDir/src/main/java/ru/gpbitfactory/minibank/middle")
+	reports {
+		csv.required = true
+	}
 }
 
 tasks.register("backendServiceOpenApi", GenerateTask) {
