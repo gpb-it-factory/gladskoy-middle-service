@@ -72,7 +72,14 @@ test {
 }
 
 jacocoTestReport {
-	classDirectories.from("$rootDir/src/main/java/ru/gpbitfactory/minibank/middle")
+	sourceDirectories.setFrom(
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/config",
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createclient"
+	)
+	classDirectories.setFrom(
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/config",
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createclient"
+	)
 	reports {
 		csv.required = true
 	}
