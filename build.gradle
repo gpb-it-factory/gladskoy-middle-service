@@ -1,55 +1,55 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 plugins {
-	id 'java'
-	id 'idea'
-	id 'jacoco'
-	id 'org.springframework.boot' version '3.2.5'
-	id 'io.spring.dependency-management' version '1.1.4'
-	id "org.openapi.generator" version "7.6.0"
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id "org.openapi.generator" version "7.6.0"
 }
 
 sourceSets {
-	main {
-		java {
-			srcDirs(
-					"$rootDir/src/main/java",
-					"$rootDir/build/generated/backend-service/src/main/java"
-			)
-		}
-	}
+    main {
+        java {
+            srcDirs(
+                    "$rootDir/src/main/java",
+                    "$rootDir/build/generated/backend-service/src/main/java"
+            )
+        }
+    }
 }
 
 idea {
-	module {
-		generatedSourceDirs.add(file("$rootDir/build/generated/backend-service/src/main/java"))
-	}
+    module {
+        generatedSourceDirs.add(file("$rootDir/build/generated/backend-service/src/main/java"))
+    }
 }
 
 jacoco {
-	toolVersion = "0.8.12"
+    toolVersion = "0.8.12"
 }
 
 group = 'ru.gpbitfactory.minibank'
 version = '0.0.1'
 
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -86,27 +86,23 @@ jacocoTestReport {
 }
 
 tasks.register("backendServiceOpenApi", GenerateTask) {
-	generatorName.set("spring")
-	inputSpec.set("$rootDir/src/main/resources/openapi/backend-service-v0.0.1.yaml")
-	outputDir.set("$rootDir/build/generated")
-	skipOverwrite = true
-	globalProperties.set([
-			apis           : "",
-			models         : "",
-			supportingFiles: 'ClientConfiguration.java'
-	])
-	configOptions.set([
-			configPackage   : "ru.gpbitfactory.minibank.backend.config",
-			apiPackage      : "ru.gpbitfactory.minibank.backend.api",
-			modelPackage    : "ru.gpbitfactory.minibank.backend.dto",
-			sourceFolder    : "backend-service/src/main/java",
-			library         : "spring-cloud",
-			dateLibrary     : "java8",
-			openApiNullable : "false",
-			generateBuilders: "true",
-			useOptional     : "true",
-			useSpringBoot3  : "true"
-	])
+    generatorName.set("spring")
+    inputSpec.set("$rootDir/src/main/resources/openapi/backend-service.yaml")
+    outputDir.set("$rootDir/build/generated")
+    skipOverwrite = true
+    globalProperties.set([
+            models         : "",
+    ])
+    configOptions.set([
+            modelPackage    : "ru.gpbitfactory.minibank.backend.dto",
+            sourceFolder    : "backend-service/src/main/java",
+            library         : "spring-cloud",
+            dateLibrary     : "java8",
+            openApiNullable : "false",
+            generateBuilders: "true",
+            useOptional     : "true",
+            useSpringBoot3  : "true"
+    ])
 }
 
 project.tasks {
