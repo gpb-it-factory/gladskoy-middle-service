@@ -21,6 +21,7 @@ public class UserMockRepository {
         var user = MockUser.builder()
                 .id(getNextId())
                 .telegramUserId(entity.getTelegramUserId())
+                .telegramUserName(entity.getTelegramUserName())
                 .accounts(entity.getAccounts())
                 .build();
         userRegistry.add(user);

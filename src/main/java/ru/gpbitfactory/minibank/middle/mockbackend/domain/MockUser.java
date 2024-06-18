@@ -21,6 +21,9 @@ public class MockUser {
     @NotNull
     private Long telegramUserId;
 
+    @NotNull
+    private String telegramUserName;
+
     private List<MockUserAccount> accounts;
 
     public void setAccount(MockUserAccount account) {
