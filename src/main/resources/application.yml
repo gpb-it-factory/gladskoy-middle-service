@@ -1,15 +1,23 @@
 spring:
   application:
     name: gladskoy-middle-service
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
 
-logging:
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSSXXX} %clr(%5level) [%15.15t] %clr(%-45.55logger{39}){cyan} : %m%n%wEx"
-  level:
-    ru.gpbitfactory.minibank.middle:
-      createclient: debug
+server:
+  port: 8081
 
 backend:
+  service:
+    url: http://localhost:8082
   accounts:
     - name: "Акционный"
       description: "Для новых пользователей. При регистрации начисляется 5000 руб."
@@ -18,3 +26,15 @@ backend:
     - name: "Депозитный"
       description: "Основной депозитный счёт. При открытии на счету будет нулевой баланс."
       type: common
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSSXXX} %clr(%5level) [%15.15t] %clr(%-45.55logger{39}){cyan} : %m%n%wEx"
+  level:
+    ru.gpbitfactory.minibank.middle:
+      createclient:
+        service: info
+        restclient: debug
+      createaccount:
+        service: info
+        restclient: debug
