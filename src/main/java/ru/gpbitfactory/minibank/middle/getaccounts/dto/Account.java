@@ -32,7 +32,7 @@ public class Account {
      */
     private AccountType type;
 
-    public enum AccountType {
+    private enum AccountType {
         /**
          * Стандартный счёт, рекомендуется открывать уже существующим клиентам
          */
@@ -46,6 +46,6 @@ public class Account {
         /**
          * Счёт, который открывается по-умолчанию для новых клиентов, если сейчас не проходит ни каких акций
          */
-        DEFAULT;
+        DEFAULT
     }
 }
