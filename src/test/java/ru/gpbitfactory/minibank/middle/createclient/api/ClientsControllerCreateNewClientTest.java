@@ -3,6 +3,7 @@ package ru.gpbitfactory.minibank.middle.createclient.api;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import ru.gpbitfactory.minibank.middle.AbstractControllerTest;
 import ru.gpbitfactory.minibank.middle.createclient.service.ClientsService;
 
 import static org.hamcrest.CoreMatchers.is;

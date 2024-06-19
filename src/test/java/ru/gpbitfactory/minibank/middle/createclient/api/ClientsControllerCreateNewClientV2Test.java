@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import ru.gpbitfactory.minibank.middle.AbstractControllerTest;
 import ru.gpbitfactory.minibank.middle.createclient.service.ClientsService;
 
 import java.util.stream.Stream;
