@@ -8,3 +8,13 @@ logging:
   level:
     ru.gpbitfactory.minibank.middle:
       createclient: debug
+
+backend:
+  accounts:
+    - name: "Акционный"
+      description: "Для новых пользователей. При регистрации начисляется 5000 руб."
+      init-amount: 5000
+      type: promo
+    - name: "Депозитный"
+      description: "Основной депозитный счёт. При открытии на счету будет нулевой баланс."
+      type: common
