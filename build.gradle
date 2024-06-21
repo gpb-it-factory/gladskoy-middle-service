@@ -56,6 +56,7 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:3.2.0'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-okhttp:13.2.1'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -75,12 +76,14 @@ jacocoTestReport {
 	sourceDirectories.setFrom(
 			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/config",
 			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createclient",
-			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/getaccounts"
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/getaccounts",
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createaccount"
 	)
 	classDirectories.setFrom(
 			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/config",
 			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createclient",
-			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/getaccounts"
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/getaccounts",
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createaccount"
 	)
 	reports {
 		csv.required = true

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import ru.gpbitfactory.minibank.backend.dto.CreateUserRequest;
 import ru.gpbitfactory.minibank.backend.dto.CreateUserRequestV2;
 
-@FeignClient(name = "backend-users-service")
+@FeignClient(name = "backend-users-service", url = "${backend.service.url}")
 public interface BackendServiceUsersApiClient {
 
     @PostMapping("/users")

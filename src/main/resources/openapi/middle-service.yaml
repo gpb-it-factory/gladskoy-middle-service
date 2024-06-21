@@ -69,14 +69,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAccountRequest'
+              $ref: '#/components/schemas/CreateClientAccountRequest'
       responses:
-        200:
+        201:
           description: Счёт успешно открыт
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateAccountResponse'
+                $ref: '#/components/schemas/CreateClientAccountResponse'
         422:
           description: В запросе содержится недопустимый контент
           content:
@@ -140,14 +140,16 @@ components:
       required:
         - telegramUserId
         - telegramUserName
-    CreateAccountRequest:
+    CreateClientAccountRequest:
       type: object
       description: Запрос на создание нового счёта
       properties:
         accountName:
           type: string
           examples:
-           - Акционный
+            - Акционный
+      required:
+        - accountName
     CreateClientResponse:
       type: object
       description: Информация о успешной регистрации клиента
@@ -156,9 +158,9 @@ components:
           type: string
           examples:
             - Клиент успешно зарегистрирован
-    CreateAccountResponse:
+    CreateClientAccountResponse:
       type: object
-      description: Информация о успешном открытии счёта для клиента
+      description: Информация об успешном открытии счёта для клиента
       properties:
         message:
           type: string
