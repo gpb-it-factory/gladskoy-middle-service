@@ -1,9 +1,11 @@
 package ru.gpbitfactory.minibank.middle.getaccounts.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 /**
  * Счёт, доступный клиенту для открытия
@@ -46,6 +48,11 @@ public class Account {
         /**
          * Счёт, который открывается по-умолчанию для новых клиентов, если сейчас не проходит ни каких акций
          */
-        DEFAULT
+        DEFAULT;
+
+        @JsonValue
+        public String getValue() {
+            return this.name().toLowerCase(Locale.ROOT);
+        }
     }
 }
