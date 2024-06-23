@@ -22,7 +22,7 @@ class AccountsControllerIntegrationTest extends AbstractControllerTest {
                         jsonPath("$.[0].name", is("Тестовый 1")),
                         jsonPath("$.[0].description", is("Необходимо для тестирования")),
                         jsonPath("$.[0].initAmount", is(5000)),
-                        jsonPath("$.[0].type", is("DEFAULT"))
+                        jsonPath("$.[0].type", is("default"))
                 );
     }
 }
