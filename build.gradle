@@ -31,7 +31,7 @@ jacoco {
 }
 
 group = 'ru.gpbitfactory.minibank'
-version = '0.0.1'
+version = '0.2.1'
 
 java {
     sourceCompatibility = '17'
@@ -77,13 +77,15 @@ jacocoTestReport {
 			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/config",
 			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createclient",
 			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/getaccounts",
-			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createaccount"
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/createaccount",
+			"$projectDir/src/main/java/ru/gpbitfactory/minibank/middle/getclient"
 	)
 	classDirectories.setFrom(
 			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/config",
 			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createclient",
 			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/getaccounts",
-			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createaccount"
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/createaccount",
+			"$projectDir/build/classes/java/main/ru/gpbitfactory/minibank/middle/getclient"
 	)
 	reports {
 		csv.required = true

@@ -38,3 +38,6 @@ logging:
       createaccount:
         service: info
         restclient: debug
+      getclient:
+        service: info
+        restclient: debug

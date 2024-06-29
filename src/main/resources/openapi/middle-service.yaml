@@ -2,7 +2,7 @@ openapi: 3.1.0
 
 info:
   title: GPB IT Factory Mini-Bank Middle Service API
-  version: 0.1.0
+  version: 0.2.1
 
 servers:
   - url: http://localhost:8081/api
@@ -51,6 +51,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateClientResponse'
+        default:
+          description: Непредвиденная ошибка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/clients/{telegramId}:
+    get:
+      operationId: getClient
+      summary: Получить данные клиента
+      tags: [ clients ]
+      parameters:
+        - $ref: '#/components/parameters/telegramId'
+      responses:
+        200:
+          description: Данные клиента
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
         default:
           description: Непредвиденная ошибка
           content:
@@ -166,9 +186,33 @@ components:
           type: string
           examples:
             - Счёт успешно открыт
+    ClientAccount:
+      type: object
+      description: Данные о счёте клиента
+      properties:
+        name:
+          type: string
+          examples:
+            - Депозитный
+        amount:
+          type: string
+          format: number
+          examples:
+            - 1234.45
+      required:
+        - name
+        - amount
+    ClientResponse:
+      type: object
+      description: Данные клиента
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientAccount'
     AccountResponse:
       type: object
-      description: Список счетов, доступных для открытия
+      description: Счёт доступный для открытия
       properties:
         name:
           type: string
