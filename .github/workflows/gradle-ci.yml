@@ -6,12 +6,11 @@ on:
   push:
     branches: [ "trunk" ]
 
-permissions:
-  pull-requests: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,6 +34,7 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     permissions:
+      pull-requests: write
       contents: write
     steps:
       - name: Checkout repository
