@@ -55,6 +55,21 @@ class GetClientControllerIntegrationTest extends AbstractControllerTest {
     }
 
     @Test
+    @DisplayName("У клиента есть счёт с нулевым балансом")
+    void whenClientHasAccountWithZeroBalance_thenShouldReturnArrayOfAccountsWithZeroAmount() throws Exception {
+        var account = new AccountsListResponseV2Inner(UUID.randomUUID(), "Test Account", null);
+        when(usersApiClient.getUserAccounts(1)).thenReturn(new ResponseEntity<>(List.of(account), HttpStatus.OK));
+
+        performGetApiV1("/clients/1")
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpectAll(
+                        jsonPath("$.accounts[0].name", is("Test Account")),
+                        jsonPath("$.accounts[0].amount", is(0))
+                );
+    }
+
+    @Test
     @DisplayName("Во время получения счетов из BackendService произошла ошибка")
     void whenGetUserAccountWasFailed_thenShouldReturnErrorResponse() throws Exception {
         when(usersApiClient.getUserAccounts(2)).thenThrow(new MockFeignException(500));
