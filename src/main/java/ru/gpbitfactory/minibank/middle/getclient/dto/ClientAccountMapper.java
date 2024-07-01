@@ -5,6 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import ru.gpbitfactory.minibank.backend.dto.AccountsListResponseV2Inner;
 
+import java.math.BigDecimal;
+
 @Component
 @RequiredArgsConstructor
 public class ClientAccountMapper {
@@ -12,6 +14,10 @@ public class ClientAccountMapper {
     private final ModelMapper modelMapper;
 
     public ClientAccount map(AccountsListResponseV2Inner accountsResponse) {
-        return modelMapper.map(accountsResponse, ClientAccount.class);
+        var account = modelMapper.map(accountsResponse, ClientAccount.class);
+        if (account.getAmount() == null) {
+            account.setAmount(BigDecimal.ZERO);
+        }
+        return account;
     }
 }
