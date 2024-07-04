@@ -120,3 +120,7 @@ project.tasks {
 		dependsOn('backendServiceOpenApi')
 	}
 }
+
+processResources {
+    exclude('*-dev.yml', 'openapi', 'project')
+}
